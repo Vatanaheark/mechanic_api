@@ -1,14 +1,16 @@
-from app.models import db
-from app import create_app
+from flask import Flask
+from config import ProductionConfig
+from flask_cors import CORS
+# from yourapp import db, blueprints, etc.
 
+def create_app(config_class=ProductionConfig):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
-app = create_app('DevelopmentConfig')
+    CORS(app)
 
+    # init db, register blueprints, etc.
+    # db.init_app(app)
+    # app.register_blueprint(...)
 
-# Create the table
-with app.app_context():
-    # db.drop_all()
-    db.create_all()
-    
-
-app.run(port=5003)
+    return app
