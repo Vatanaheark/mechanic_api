@@ -17,10 +17,11 @@ def create_app(config_class=ProductionConfig):
     # app.register_blueprint(...)
 
     return app
+
 # -----------------------------
 # REQUIRED FOR RENDER / GUNICORN
 # -----------------------------
-app = create_app()
+app = create_app("ProductionConfig")
 
 if __name__ == "__main__":
     app.run()
